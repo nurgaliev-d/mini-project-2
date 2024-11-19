@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
     'rest_framework_simplejwt.token_blacklist',
     'users',
     'students',
@@ -110,7 +111,7 @@ CACHES = {
 TEMPLATES = [
        {
            'BACKEND': 'django.template.backends.django.DjangoTemplates',
-           'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Add this line
+           'DIRS': [os.path.join(BASE_DIR, 'templates')],
            'APP_DIRS': True,
            'OPTIONS': {
                'context_processors': [
@@ -128,15 +129,15 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': 'student_management.log',
+            'filename': 'user_registration.log',
         },
     },
     'loggers': {
         'django': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True,
         },
     },

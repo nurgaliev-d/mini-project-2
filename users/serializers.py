@@ -2,13 +2,14 @@ from rest_framework import serializers
 from .models import User
 
 class UserSerializer(serializers.ModelSerializer):
+    role = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'role', 'password')
-        extra_kwargs = {'password': {'write_only': True}}
+        fields = ['id', 'username', 'email', 'role']
 
-    def create(self, validated_data):
-        user = User(**validated_data)
-        user.set_password(validated_data['password'])
-        user.save()
-        return user
+    def get_role(self, obj):
+        if obj.is_superuser:
+            return 'admin'
+        # Add logic for other roles if applicable
+        return 'student'
